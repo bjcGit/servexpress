@@ -1,53 +1,56 @@
-const { response } = require('express')
+const { response, request } = require("express");
 
+const usersGet = (req = request, res = response) => {
 
-const usersGet = (req, res = response) => {
-    res.json({
-      msg: "get API - controller",
-    });
-  }
+  const { q, nombre = "No name", apikey, page = 1, limit } = req.query;
 
+  res.json({
+    msg: "get API - GetUsers",
+    q,
+    nombre,
+    apikey,
+    page,
+    limit,
+  });
+};
 
-  const usersPut = (req, res = response) => {
+const usersPut = (req, res = response) => {
+  const { id } = req.params;
 
-    const{ id } = req.params;
+  res.json({
+    msg: "put API - PutUsersr",
+    id,
+  });
+};
 
-    res.json({
-      msg: "get API - controller",
-      id
-    });
-  }
+const usersPost = (req, res = response) => {
+  const { nombre, edad } = req.body;
 
+  res.json({
+    msg: "post API - PostUsers",
+    nombre,
+    edad,
+  });
+};
 
-  const usersPost = (req, res = response) => {
+const usersDelete = (req, res = response) => {
 
-    const {name, edad} = req.body
+  res.json({
+    msg: "delete API - DeleteUsers",
+  });
+};
 
-    res.json({
-      msg: "get API - controller",
-      name,
-      edad
-    });
-  }
+const usersPatch = (req, res = response) => {
 
+  res.json({
+    msg: "patch API - PatchUsers",
+  });
+};
 
-  const usersDelete = (req, res = response) => {
-    res.json({
-      msg: "get API - controller",
-    });
-  }
-
-
-  const usersPatch = (req, res = response) => {
-    res.json({
-      msg: "get API - controller",
-    });
-  }
-
-  module.exports = {
-    usersGet,
-    usersPut,
-    usersPost,
-    usersDelete,
-    usersPatch
-  }
+module.exports = {
+  usersGet,
+  usersPut,
+  usersPost,
+  usersDelete,
+  usersPatch,
+};
