@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const { dbConnection } = require("../database/config");
@@ -11,6 +12,7 @@ class Server {
 
     //Conectar a base de datos
     this.conectarDB();
+ 
 
     //Middlewares
     this.middlewares();
@@ -21,6 +23,7 @@ class Server {
 
   async conectarDB(){
     await dbConnection();
+    // await connection();
   }
 
   middlewares() {
