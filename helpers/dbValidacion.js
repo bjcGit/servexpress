@@ -10,7 +10,7 @@ const rolValido = async (rol = "") => {
 
 const existeEmail = async (correo = "") => {
   const correoValido = await Usuario.findOne({ correo });
-  if (!correoValido) {
+  if (correoValido) {
     throw new Error(`El correo ${correo} ya esta registrado`);
   }
 };
@@ -22,8 +22,16 @@ const usuarioPorId = async (id) => {
   }
 };
 
+const validacionCedula = async (cedula = "") => {
+  const existeCedula = await Usuario.findOne({ cedula });
+  if (existeCedula) {
+    throw new Error(`El usuario con la cedula ${cedula} ya existe`);
+  }
+};
+
 module.exports = {
   rolValido,
   existeEmail,
   usuarioPorId,
+  validacionCedula,
 };

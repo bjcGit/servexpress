@@ -8,7 +8,7 @@ const {
   usersPatch,
 } = require("../controllers/users");
 const { validarCampos } = require("../middlewares/validar-campos");
-const {rolValido, existeEmail, usuarioPorId} = require('../helpers/dbValidacion');
+const {rolValido, existeEmail, usuarioPorId, validacionCedula} = require('../helpers/dbValidacion');
 
 const router = Router();
 
@@ -24,7 +24,7 @@ router.put("/:id",[
 router.post("/",[
    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
    check('apellido', 'El apellido es obligatorio').not().isEmpty(),
-   check('cedula', 'La cedula es obligatoria').not().isEmpty(),
+   check('cedula').custom(validacionCedula),
    check('contraseña', 'La contraseña debe de tener al menos 6 caracteres').isLength({min: 6}),
    check('correo').custom(existeEmail).isEmail(),
    check('rol').custom(rolValido),
