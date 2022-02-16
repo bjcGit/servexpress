@@ -6,7 +6,7 @@ const {
   usersPost,
   usersDelete,
   usersPatch,
-} = require("../controllers/users");
+} = require("../controllers/controlUser");
 const { validarCampos } = require("../middlewares/validar-campos");
 const {rolValido, existeEmail, usuarioPorId, validacionCedula} = require('../helpers/dbValidacion');
 
